@@ -1,7 +1,7 @@
 'use strict';
 /* Phase VIII Mind Capture — reaction time (PVT), Stroop focus test, and daily check-in on the phone.
    Data stays on this phone. Export writes one small JSON file the RxBlueprint Mind tab imports (duplicates are skipped by id). */
-const VER = '1.0.0', KEY = 'p8mc-v1', APP_ID = 'Phase VIII Mind Capture';
+const VER = '1.0.1', KEY = 'p8mc-v1', APP_ID = 'Phase VIII Mind Capture';
 const FAST = /[?&]fast=1/.test(location.search);          // test mode: short tasks (used only for automated testing)
 const PVT_MS = FAST ? 6000 : 180000, STROOP_N = FAST ? 8 : 48, PRACTICE_N = FAST ? 2 : 6, MIN_PVT = FAST ? 3 : 20;
 
@@ -92,7 +92,7 @@ function vCheckin() {
   <div class="field"><label>Energy</label>${scale('energy', f.energy, 'drained', 'high')}</div>
   <div class="field"><label>Sleep last night (hours)</label><input type="number" inputmode="decimal" step="0.25" min="0" max="24" data-f="sleepHrs" value="${esc(f.sleepHrs)}"></div>
   <div class="field"><label>Sleep quality</label>${scale('sleepQ', f.sleepQ, 'poor', 'great')}</div>
-  <div class="field"><label>Caffeine yesterday (cups)</label><input type="number" inputmode="decimal" step="0.5" min="0" data-f="caffeineY" value="${esc(f.caffeineY)}"></div>
+  <div class="field"><label>Caffeine yesterday (coffee-cup equivalents)</label><input type="number" inputmode="decimal" step="0.1" min="0" data-f="caffeineY" value="${esc(f.caffeineY)}"><div class="faint" style="margin-top:4px">1 = one brewed coffee (about 95 mg). A cup of milk tea is about 0.2.</div></div>
   <div class="field"><label>Time of last cup yesterday</label><input type="time" data-f="lastCaffY" value="${esc(f.lastCaffY)}"></div>
   <div class="field"><label>Note</label><input type="text" data-f="note" value="${esc(f.note)}" placeholder="Anything unusual…"></div>
   <div class="faint">Recorded at ${esc(f.time)} on ${esc(f.date)}.</div></div>
